@@ -1,8 +1,11 @@
+import { version } from "react";
+
 export const LANGUAGES = {
   javascript: {
     id: 1,
     name: "JavaScript",
     value: "javascript",
+    version:"18.15.0",
     defaultCode: `// JavaScript Example
 function greet() {
   console.log("Hello, JavaScript!");
@@ -13,6 +16,7 @@ greet();`,
     id: 2,
     name: "Python",
     value: "python",
+    version:"3.10.0",
     defaultCode: `# Python Example
 def greet():
     print("Hello, Python!")
@@ -23,6 +27,7 @@ greet()`,
     id: 3,
     name: "Java",
     value: "java",
+    value:"15.0.2",
     defaultCode: `// Java Example
 class Main {
     public static void main(String[] args) {
@@ -30,17 +35,17 @@ class Main {
     }
 }`,
   },
-  cpp: {
+  typescript: {
     id: 4,
-    name: "C++",
-    value: "cpp",
-    defaultCode: `// C++ Example
-#include <iostream>
-using namespace std;
+    name: "Typescript",
+    value: "typescript",
+    version:"5.0.3",
+    defaultCode: `// TypeScript Example
+function greet(name: string = "TypeScript"): void {
+  console.log(\`Hello, ${name}!\`);
+}
 
-int main() {
-    cout << "Hello, C++!" << endl;
-    return 0;
-}`,
+greet();
+`,
   },
 };
