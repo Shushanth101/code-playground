@@ -24,6 +24,7 @@ export default function App() {
   };
 
   const handleRun = async () => {
+    outputRef.current.innerText = "Running Code please wait!..."
     const sourceCode = editorRef.current.getValue()
     if(!sourceCode) return
     try{
