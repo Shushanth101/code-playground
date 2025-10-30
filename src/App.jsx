@@ -31,7 +31,7 @@ export default function App() {
       <select onChange={handleLanguageChange} value={language} >
         {
           Object.keys(LANGUAGES).map(key=>{
-            return (<option key={LANGUAGES[key].id} value={LANGUAGES[key].value}> {LANGUAGES[key].name} </option>)
+            return (<option key={LANGUAGES[key].id} value={LANGUAGES[key].value}> {LANGUAGES[key].name +"("+ LANGUAGES[key].version+")" } </option>)
           })
         }
 
@@ -40,6 +40,7 @@ export default function App() {
           <Editor
           height="75vh"
           width="50vw"
+          theme="vs-light"
           language={language}
           onMount={handleEditorMount}
           value={code}

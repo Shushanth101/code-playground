@@ -27,7 +27,7 @@ greet()`,
     id: 3,
     name: "Java",
     value: "java",
-    value:"15.0.2",
+    version:"15.0.2",
     defaultCode: `// Java Example
 class Main {
     public static void main(String[] args) {
