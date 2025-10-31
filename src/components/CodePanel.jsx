@@ -26,7 +26,7 @@ function CodePanel({language,setLanguage,editorRef}) {
 
   return (
         <div>
-          <select onChange={handleLanguageChange} value={language}>
+          <select style={{backgroundColor:"#1c1c1cff",color:"white",cursor:"pointer"}} onChange={handleLanguageChange} value={language}>
             {Object.keys(LANGUAGES).map((key) => (
               <option key={LANGUAGES[key].id} value={LANGUAGES[key].value}>
                 {LANGUAGES[key].name + " (" + LANGUAGES[key].version + ")"}
@@ -35,9 +35,9 @@ function CodePanel({language,setLanguage,editorRef}) {
           </select>
           <Suspense fallback={<div>Loading Monaco Editor...</div>} >   
             <Editor
-                height="75vh"
+                height="100vh"
                 width="50vw"
-                theme="vs-light"
+                theme="vs-dark"
                 language={language}
                 onMount={handleEditorMount}
                 value={code}

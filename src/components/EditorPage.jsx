@@ -7,7 +7,7 @@ export default function EditorPage() {
     const editorRef = useRef(null)
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex",backgroundColor:"#1c1c1cff" }}>
         <CodePanel language={language} setLanguage={setLanguage} editorRef={editorRef} />
         <OutputPanel editorRef={editorRef} language={language} />
       </div>

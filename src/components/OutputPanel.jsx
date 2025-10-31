@@ -23,7 +23,7 @@ function OutputPanel({editorRef,language}) {
   return (
             <div style={{ display: "flex", flexDirection: "column", width: "50vw" }}>
           <div>
-            <button onClick={handleRun}>Run Code</button>
+            <button style={{backgroundColor:"#1c1c1cff",color:"white",cursor:'pointer'}} onClick={handleRun}>Run Code</button>
           </div>
           <div
           ref={outputRef}
@@ -33,8 +33,9 @@ function OutputPanel({editorRef,language}) {
               padding: "10px",
               overflowY: "auto",
               minHeight: "75vh",
-              backgroundColor: "#f9f9f9",
+              backgroundColor: "#1c1c1cff",
               whiteSpace: "pre-wrap",
+              color:"white"
             }}
           >
           </div>
