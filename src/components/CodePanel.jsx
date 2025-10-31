@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { LANGUAGES } from '../constants'
-import { Editor } from '@monaco-editor/react';
+// import { Editor } from '@monaco-editor/react';
+const Editor = React.lazy(()=>import("@monaco-editor/react"))
 
 function CodePanel({language,setLanguage,editorRef}) {
     const [code,setCode] = useState(LANGUAGES["javascript"].defaultCode)
@@ -32,16 +33,17 @@ function CodePanel({language,setLanguage,editorRef}) {
               </option>
             ))}
           </select>
-
-          <Editor
-            height="75vh"
-            width="50vw"
-            theme="vs-light"
-            language={language}
-            onMount={handleEditorMount}
-            value={code}
-            onChange={(value) => handleCodeChange(value)}
-          />
+          <Suspense fallback={<div>Loading Monaco Editor...</div>} >   
+            <Editor
+                height="75vh"
+                width="50vw"
+                theme="vs-light"
+                language={language}
+                onMount={handleEditorMount}
+                value={code}
+                onChange={(value) => handleCodeChange(value)}
+            />
+          </Suspense>
         </div>
     
   )
