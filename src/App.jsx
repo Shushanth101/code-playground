@@ -1,3 +1,4 @@
+import { Routes,Route } from "react-router-dom";
 import EditorPage from "./components/EditorPage";
 
 export default function App() {
@@ -5,7 +6,9 @@ export default function App() {
 
   return (
     <>
-      <EditorPage/>
+    <Routes>
+      <Route path = "/playground" element={<EditorPage/>}/>
+    </Routes>
     </>
   );
 }
