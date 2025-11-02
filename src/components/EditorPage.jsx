@@ -9,8 +9,8 @@ export default function EditorPage() {
 
   return (
     <div style={{ display: "flex",backgroundColor:"#1c1c1cff" }}>
+      <LanguageAndVersionProvider>
         <CodePanel language={language} setLanguage={setLanguage} editorRef={editorRef} />
-        <LanguageAndVersionProvider>
         <OutputPanel editorRef={editorRef} language={language} />
         </LanguageAndVersionProvider>
       </div>
