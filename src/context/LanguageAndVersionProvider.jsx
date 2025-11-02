@@ -6,7 +6,7 @@ export const LanguageAndVersionContext = createContext();
 
 function LanguageAndVersionProvider(props) {
 
-  const [languageAndVersions,setLanguageAndVersions] = useState([])
+  const [languagesAndVersions,setLanguageAndVersions] = useState([])
 
 useEffect(()=>{
     const fetchData = async()=>{
@@ -19,13 +19,13 @@ useEffect(()=>{
     }
   }
 
-  return fetchData()
+  fetchData()
 },[])
 
 
 
   return (
-    <LanguageAndVersionContext.Provider value={{languageAndVersions}}>
+    <LanguageAndVersionContext.Provider value={{languagesAndVersions}}>
       {props.children}
     </LanguageAndVersionContext.Provider>
   )

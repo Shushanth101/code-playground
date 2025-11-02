@@ -6,6 +6,7 @@ export const API = axios.create({
 })
 
 export const executeCode = async (language,code)=>{
+    console.log("Executing code in language:",language)
     const res = await API.post("/execute",{
         "language":language,
         "version":LANGUAGES[language].version,

@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { getLanguages } from "../api";
-import {  DEFAULT_SNIPPETS } from "../constants";
+import React, { useEffect, useContext, useState } from "react";
+import { LanguageAndVersionContext } from "../context/LanguageAndVersionProvider";
+import { LANGUAGES } from '../constants'; 
+import { DEFAULT_CODE_SNIPPETS } from '../constants'; 
 
-export default function LanguageSelector({ language, setLanguage,setCode }) {
-  const [languages, setLanguages] = useState([]); 
+export default function LanguageSelector({ language, setLanguage, setCode }) {
+  const { languagesAndVersions } = useContext(LanguageAndVersionContext);
+  const [languages, setLanguages] = useState([]);
 
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
     setLanguage(newLang);
-    setCode(DEFAULT_SNIPPETS[newLang] || "// No default snippet available!");
+    setCode(DEFAULT_CODE_SNIPPETS[newLang]?.defaultCode || "// No default code available!");
   };
 
   useEffect(() => {
-    async function fetchLanguages() {
-      try {
-        const data = await getLanguages();
-        const popular = ["typescript", "javascript", "python", "c", "c++", "csharp","go","java","ruby","rust","php"];
-        const filtered = data.filter((item) =>
-          popular.includes(item.language.toLowerCase())
-        );
-        setLanguages(filtered); 
-        console.log("Fetched languages:", data);
-      } catch (error) {
-        console.error("Error fetching languages:", error);
-      }
-    }
-
-    fetchLanguages();
-  }, []);
+    const popular = ["typescript", "javascript", "python", "c", "c++", "csharp", "go", "java", "ruby", "rust", "php"];
+    const filtered = languagesAndVersions?.filter((item) =>
+      popular.includes(item.language.toLowerCase())
+    ) || [];
+    setLanguages(filtered);
+    console.log("Filtered languages:", filtered);
+  }, [languagesAndVersions]); 
 
   return (
     <select
