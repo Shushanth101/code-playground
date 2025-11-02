@@ -1,17 +1,20 @@
 import React from 'react'
-import { useRef } from 'react';
+import { useRef,useContext } from 'react';
 import { executeCode } from "../api";
+import { LanguageAndVersionContext } from '../context/LanguageAndVersionProvider';
+
 
 
 function OutputPanel({editorRef,language}) {
     const outputRef = useRef(null)
+    const { languagesAndVersions } = useContext(LanguageAndVersionContext)
     
     const handleRun = async () => {
         outputRef.current.innerText = "Running Code please wait!..."
         const sourceCode = editorRef.current.getValue()
         if(!sourceCode) return
         try{
-          const {run:result} = await executeCode(language,sourceCode)
+          const {run:result} = await executeCode(language,sourceCode,languagesAndVersions)
           const outputs = result.output.split("\n")
           outputRef.current.innerText = result.output
         }
