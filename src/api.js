@@ -19,3 +19,7 @@ export const executeCode = async (language,code)=>{
 
 }
 
+export const getLanguagesAndVersions = async ()=>{
+    const res = await API.get("/runtimes")
+    return res.data
+}
