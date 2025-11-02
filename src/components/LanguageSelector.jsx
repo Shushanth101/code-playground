@@ -7,13 +7,21 @@ export default function LanguageSelector({ language, setLanguage, setCode }) {
   const { languagesAndVersions } = useContext(LanguageAndVersionContext);
   const [languages, setLanguages] = useState([]);
 
-  const handleLanguageChange = (e) => {
-    const newLang = e.target.value;
-    setLanguage(newLang);
-    setCode(DEFAULT_CODE_SNIPPETS[newLang]?.defaultCode || "// No default code available!");
-  };
+ const handleLanguageChange = (e) => {
+  const newLang = e.target.value;
+
+  const snippetKey = newLang === "c++" ? "cpp" : newLang;
+
+  setLanguage(newLang);
+  setCode(
+    DEFAULT_CODE_SNIPPETS[snippetKey]?.defaultCode ||
+      "// No default code available!"
+  );
+};
+
 
   useEffect(() => {
+    if (!languagesAndVersions || languagesAndVersions.length === 0) return;
     const popular = ["typescript", "javascript", "python", "c", "c++", "csharp", "go", "java", "ruby", "rust", "php"];
     const filtered = languagesAndVersions?.filter((item) =>
       popular.includes(item.language.toLowerCase())
