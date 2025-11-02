@@ -25,9 +25,9 @@ useEffect(()=>{
 
 
   return (
-    <LanguageAndVeersionContext.Provider value={{languageAndVersions}}>
+    <LanguageAndVersionContext.Provider value={{languageAndVersions}}>
       {props.children}
-    </LanguageAndVeersionContext.Provider>
+    </LanguageAndVersionContext.Provider>
   )
 }
 
