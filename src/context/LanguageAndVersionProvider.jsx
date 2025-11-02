@@ -2,7 +2,7 @@ import React,{createContext, useEffect} from 'react'
 import { useState } from 'react';
 import { getLanguagesAndVersions } from '../api'; 
 
-const LanguageAndVersionContext = createContext();
+export const LanguageAndVersionContext = createContext();
 
 function LanguageAndVersionProvider(props) {
 
