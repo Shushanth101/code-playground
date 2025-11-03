@@ -1,0 +1,88 @@
+/* Button + small container styles — tweak colors if desired */
+.home {
+  font-family: "Press Start 2P", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a45);
+  color: #fff;
+  letter-spacing: 1px;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.home__title {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.home__subtitle {
+  font-size: 13px;
+  margin: 0 0 24px;
+  opacity: 0.85;
+}
+
+/* CTA */
+.home__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #00ff88, #00e06a);
+  color: #0b0b0b;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 255, 136, 0.12);
+  transform: translateY(0);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  font-size: 13px;
+  user-select: none;
+}
+
+/* Icon */
+.home__icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.95;
+}
+
+/* Hover / focus / active */
+.home__cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 255, 136, 0.18);
+  filter: saturate(1.05);
+}
+
+.home__cta:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+.home__cta:focus-visible {
+  outline: 3px solid rgba(0, 255, 136, 0.18);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .home__cta,
+  .home__cta:hover,
+  .home__cta:active {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+  .home__cta {
+    padding: 10px 14px;
+    gap: 8px;
+    font-size: 12px;
+  }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -9,48 +10,33 @@ function HomePage() {
   };
 
   return (
-    <div
-      style={{
-        fontFamily: "'Press Start 2P', system-ui",
-        textAlign: "center",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "linear-gradient(135deg, #1e1e2f, #2a2a45)",
-        color: "#fff",
-        letterSpacing: "1px",
-      }}
-    >
-      <h1 style={{ fontSize: "20px", marginBottom: "20px" }}>
-        Hello! This is a project!
-      </h1>
-      <p style={{ fontSize: "12px", marginBottom: "40px", opacity: 0.8 }}>
-        Welcome to Code Playground — Run your Program!
-      </p>
+    <div className="home">
+      <h1 className="home__title">Hello! This is a project!</h1>
+      <p className="home__subtitle">Welcome to Code Playground — Run your Program!</p>
+
       <button
+        className="home__cta"
         onClick={handleClick}
-        style={{
-          backgroundColor: "#00ff88",
-          border: "none",
-          color: "#111",
-          padding: "12px 24px",
-          fontFamily: "'Press Start 2P', system-ui",
-          cursor: "pointer",
-          borderRadius: "8px",
-          transition: "transform 0.2s, box-shadow 0.2s",
-        }}
-        onMouseOver={(e) => {
-          e.target.style.transform = "scale(1.05)";
-          e.target.style.boxShadow = "0 0 10px #00ff88";
-        }}
-        onMouseOut={(e) => {
-          e.target.style.transform = "scale(1)";
-          e.target.style.boxShadow = "none";
-        }}
+        aria-label="Go to playground"
       >
-        Go to Playground
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="home__icon"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M5 7l5 5l-5 5"></path>
+          <path d="M12 19l7 0"></path>
+        </svg>
+        <span className="home__cta-text">Go to Playground</span>
       </button>
     </div>
   );
