@@ -1,16 +1,68 @@
-# React + Vite
+# Code Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, web-based code editor and execution environment built with React and Vite. This application allows users to write and run code in multiple languages directly from their browser using the Piston API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Multi-language Support**: Write and execute code in:
+    -   JavaScript (Node.js)
+    -   Python
+    -   Java
+    -   C
+    -   C++
+-   **Smart Editor**: Powered by [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the code editor that powers VS Code), featuring syntax highlighting and code suggestions.
+-   **Real-time Execution**: Execute code instantly and view output in a dedicated panel.
+-   **Clean UI**: Modern, responsive interface with split-pane layout for coding and output.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Frontend Framework**: React 19
+-   **Build Tool**: Vite
+-   **Editor**: `@monaco-editor/react`
+-   **Execution Engine**: [Piston API](https://emkc.org/)
+-   **Styling**: Vanilla CSS / React Icons
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+-   Node.js (latest version recommended)
+-   npm or yarn
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository-url>
+    cd codeplayground
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+### Running Locally
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal).
+
+## Usage
+
+1.  Select a language from the dropdown menu in the top bar.
+2.  Write your code in the editor on the left.
+3.  Click the "Run" button to execute your code.
+4.  View the output (stdout/stderr) in the right panel.
+
+## Project Structure
+
+-   `src/App.jsx`: Main application component handling state and layout.
+-   `src/components/`: Reusable UI components (LeftPanel, RightPanel).
+-   `src/constants.js`: Language definitions and default code snippets.
