@@ -40,7 +40,7 @@ function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef,exe
 
             </div>
 
-            <button className="btn btn-primary" disabled={loading} onClick={()=>executeCode()}>Run Code</button>
+            <button className={ `btn btn-primary ${loading || runtime.language==="nls" ? "disabled" : ""}`}onClick={()=>executeCode()} data-bs-toggle="tooltip" data-bs-placement="left" title="Run Code">Run Code</button>
           </div>
 
           {/* Editor */}
