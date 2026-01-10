@@ -15,7 +15,9 @@ function App() {
     defaultCodeSnippets["javascript"].code
   );
   const [output, setOutput] = useState([]);
+  const [stdin,setStdin] = useState("")
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('output');
   const editorRef = useRef(null);
 
   const getRunTimes = async () => {
@@ -53,10 +55,10 @@ function App() {
             "content": currentCode
           }
         ],
-        "stdin": "",
+        "stdin": stdin,
         "args": ["1", "2", "3"],
         "compile_timeout": 10000,
-        "run_timeout": 3000,
+        "run_timeout": 5000,
         "compile_memory_limit": -1,
         "run_memory_limit": -1
       })
@@ -67,6 +69,7 @@ function App() {
     setLoading(prev => !prev);
 
     setOutput(data.run);
+    setActiveTab("output")
   }
 
 
@@ -76,7 +79,7 @@ function App() {
       <div className="d-flex" style={{ height: "100vh" }}>
 
         <LeftPanel runtimes={runtimes} runtime={runtime} setRuntime={setRuntime} code={code} setCode={setCode} editorRef={editorRef} executeCode={executeCode} loading={loading} />
-        <RightPanel output={output} loading={loading} />
+        <RightPanel output={output} loading={loading} stdin={stdin} setStdin={setStdin} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       </div>
     </>
