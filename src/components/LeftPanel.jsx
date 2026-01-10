@@ -1,7 +1,18 @@
 import CodeEditor from './CodeEditor';
-import { languageIcons } from '../constants';
+import { fileNames, languageIcons } from '../constants';
 
 function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef,executeCode,loading }) {
+  const handleDownload = ()=>{
+    const blob = new Blob([code],{ type: 'text/plain' });
+    const url = URL.createObjectURL(blob)
+
+    const link = document.createElement("a")
+    link.href = url;
+    link.download = fileNames[runtime.language];
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
   return (
      
         <div className="d-flex flex-column p-3" style={{ width: "50%" }}>
@@ -40,6 +51,7 @@ function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef,exe
 
             </div>
 
+            <button className='btn btn-outline-secondary' onClick={handleDownload}>download current file.</button>
             <button className={ `btn btn-primary ${loading || runtime.language==="nls" ? "disabled" : ""}`}onClick={()=>executeCode()} data-bs-toggle="tooltip" data-bs-placement="left" title="Run Code">Run Code</button>
           </div>
 

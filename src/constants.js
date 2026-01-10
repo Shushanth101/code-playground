@@ -64,3 +64,11 @@ export const languageIcons = {
   "c++": "fa-solid fa-code",
   "nls": "fa-solid fa-question"
 };
+
+export const fileNames={
+  "javascript":"index.js",
+  "java":"Main.java",
+  "c":"main.c",
+  "c++":"main.cpp",
+  "python":"main.py"
+}
