@@ -51,8 +51,16 @@ function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef,exe
 
             </div>
 
-            <button className='btn btn-outline-secondary' onClick={handleDownload}>download current file.</button>
-            <button className={ `btn btn-primary ${loading || runtime.language==="nls" ? "disabled" : ""}`}onClick={()=>executeCode()} data-bs-toggle="tooltip" data-bs-placement="left" title="Run Code">Run Code</button>
+            <button className={`btn btn-outline-secondary ${runtime.language==="nls"?"disabled":""}`} onClick={handleDownload}>download current file.</button>
+            <button className={ `btn btn-primary ${loading || runtime.language==="nls" ? "disabled" : ""}`}onClick={()=>executeCode()} data-bs-toggle="tooltip" data-bs-placement="left" 
+            title="Run Code(ctrl+enter)">
+              {loading?(<div>
+                <div class="spinner-border spinner-border-sm" role="status">
+  <span class="sr-only">compiling...</span>
+</div>
+  compiling...
+              </div>)
+:"Run Code"}</button>
           </div>
 
           {/* Editor */}
