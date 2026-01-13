@@ -50,7 +50,7 @@ function CodeEditor({ runtime, code, setCode, editorRef, executeCode, handleDown
       onChange={(value) => setCode(value)}
       onMount={handleEditorDidMount}
       options={{
-        minimap: { enabled: false },
+        minimap: { enabled: true },
       }}
     />
   )

@@ -1,7 +1,9 @@
 import CodeEditor from './CodeEditor';
 import { fileNames, languageIcons } from '../constants';
 
-function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef, executeCode, loading }) {
+import { FaTerminal, FaPlay } from "react-icons/fa";
+
+function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef, executeCode, loading, args, setArgs }) {
   const handleDownload = () => {
     const currentCode = editorRef.current.getValue();
     const blob = new Blob([currentCode], { type: 'text/plain' });
@@ -53,17 +55,28 @@ function LeftPanel({ runtimes, runtime, setRuntime, code, setCode, editorRef, ex
 
         </div>
 
-        <button className={`btn btn-outline-secondary ${runtime.language === "nls" ? "disabled" : ""}`} onClick={handleDownload} data-bs-toggle="tooltip" data-bs-placement="left"
-          title="Save File(Ctrl/Cmd+s)">Save File</button>
-        <button className={`btn btn-primary ${loading || runtime.language === "nls" ? "disabled" : ""}`} onClick={() => executeCode()} data-bs-toggle="tooltip" data-bs-placement="left"
-          title="Run Code(ctrl/cmd+enter)">
-          {loading ? (<div>
-            <div class="spinner-border spinner-border-sm" role="status">
-              <span class="sr-only">compiling...</span>
-            </div>
-            compiling...
-          </div>)
-            : "Run Code"}</button>
+        <div className="d-flex gap-2">
+          <button className={`btn btn-outline-secondary ${runtime.language === "nls" ? "disabled" : ""}`} onClick={handleDownload} data-bs-toggle="tooltip" data-bs-placement="left"
+            title="Save File(Ctrl/Cmd+s)">Save File</button>
+          <button className={`btn btn-primary ${loading || runtime.language === "nls" ? "disabled" : ""}`} onClick={() => executeCode()} data-bs-toggle="tooltip" data-bs-placement="left"
+            title="Run Code(ctrl/cmd+enter)">
+            {loading ? (<div>
+              <div className="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">compiling...</span>
+              </div>
+              compiling...
+            </div>)
+              : <span> <FaPlay className="me-2" />Run Code</span>}
+          </button>
+        </div>
+      </div>
+
+      <div className="input-group input-group-sm mb-3">
+        <span className="input-group-text" id="inputGroup-sizing-sm"><FaTerminal /></span>
+        <input type="text" className="form-control" placeholder='Enter command Line arguments for your program.' aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+          value={args}
+          onChange={(e) => setArgs(e.target.value)}
+        />
       </div>
 
       {/* Editor */}
