@@ -15,10 +15,11 @@ function App() {
     defaultCodeSnippets["javascript"].code
   );
   const [output, setOutput] = useState([]);
-  const [stdin,setStdin] = useState("")
+  const [stdin, setStdin] = useState("")
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('output');
   const editorRef = useRef(null);
+
 
   const getRunTimes = async () => {
     const res = await fetch("https://emkc.org/api/v2/piston/runtimes");
@@ -27,6 +28,7 @@ function App() {
     const filtered = data.filter((rt) => allowedLanguages.includes(rt.language));
     setRuntimes(filtered);
   }
+
 
   useEffect(() => {
     setCode(defaultCodeSnippets[runtime.language].code);
@@ -40,36 +42,40 @@ function App() {
 
   const executeCode = async () => {
     const currentCode = editorRef.current.getValue();
-    setLoading(prev => !prev);
-    const res = await fetch("https://emkc.org/api/v2/piston/execute", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "language": runtime.language,
-        "version": runtime.version,
-        "files": [
-          {
-            "name": defaultCodeSnippets[runtime.language].filename,
-            "content": currentCode
-          }
-        ],
-        "stdin": stdin,
-        "args": ["1", "2", "3"],
-        "compile_timeout": 10000,
-        "run_timeout": 5000,
-        "compile_memory_limit": -1,
-        "run_memory_limit": -1
+    setLoading(true);
+    try {
+      const res = await fetch("https://emkc.org/api/v2/piston/execute", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "language": runtime.language,
+          "version": runtime.version,
+          "files": [
+            {
+              "name": defaultCodeSnippets[runtime.language].filename,
+              "content": currentCode
+            }
+          ],
+          "stdin": stdin,
+          "args": ["1", "2", "3"],
+          "compile_timeout": 10000,
+          "run_timeout": 5000,
+          "compile_memory_limit": -1,
+          "run_memory_limit": -1
+        })
       })
-    })
 
-
-    const data = await res.json();
-    setLoading(prev => !prev);
-
-    setOutput(data.run);
-    setActiveTab("output")
+      const data = await res.json();
+      setOutput(data.run);
+      setActiveTab("output")
+    } catch (error) {
+      console.error(error);
+      setOutput({ stderr: "Failed to execute code. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   }
 
 
